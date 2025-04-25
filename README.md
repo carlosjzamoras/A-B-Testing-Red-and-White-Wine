@@ -84,10 +84,107 @@ Name: quality, dtype: float64
 A quick inspection reveals a similar mean in quality score between the two wines. However, the distrbutions for the white wine appears to be normal while the red wine quality score is close to normal but slightly narrower with a slight left skew. We do not perform any data transformations but we do check for outliers below in the form of a box-and-whisker plot.
 
 ```python
+# Check for outliers
+# Box and Whisker plot 
+fig, axes = plt.subplots(1,2)
+axes[0].boxplot(red_wine_df['quality'])
+axes[0].set_xlabel('Red Wine')
+axes[0].set_xticks([])
 
+axes[1].boxplot(white_wine_df['quality'])
+axes[1].set_xlabel('White Wine')
+axes[1].set_xticks([])
+
+#Labels and title 
+for ax in axes:
+    ax.set_ylabel("Quality Score")
+plt.suptitle("Box-and-Whisker Plot of Wine Quality")
+plt.show()
 ```
   >The output is shown below
+![wine box and whisker plot](https://github.com/user-attachments/assets/2094298a-85c2-461c-ad81-40bf498e187d)
 
+There are outliers in both data sets. If we were confident that both data sets were normally distributed we might opt to remove outliers past two standard deviations in both directions from the mean. However, we take a more pragmatic approach and remove ouliers via the _IQR Method_. The IQR method removes data _1.5_ times the interquartile range in both directions from the data set. 
 
+```python
+#There are outliers, use the IQR method
+Q1_red=red_wine_df['quality'].quantile(.25)
+Q1_white=white_wine_df['quality'].quantile(.25)
+
+Q3_red=red_wine_df['quality'].quantile(.75)
+Q3_white=white_wine_df['quality'].quantile(.75)
+
+IQR_red = Q3_red-Q1_red
+IQR_white = Q3_white-Q1_white
+
+lower_red=Q1_red-1.5*IQR_red
+lower_white=Q1_white-1.5*IQR_white
+
+upper_red=Q3_red+1.5*IQR_red
+upper_white=Q3_white+1.5*IQR_white
+
+#Create an array of boolean value indicating the outlier rows
+lower_array_red=np.where(red_wine_df['quality'] <= lower_red)[0]
+lower_array_white=np.where(white_wine_df['quality'] <= lower_white)[0]
+upper_array_red=np.where(red_wine_df['quality'] >= upper_red)[0]
+upper_array_white=np.where(white_wine_df['quality'] >= upper_white)[0]
+
+#removing the outliers 
+red_wine_df.drop(index=lower_array_red,inplace = True)
+red_wine_df.drop(index=upper_array_red,inplace = True)
+white_wine_df.drop(index = lower_array_white,inplace = True)
+white_wine_df.drop(index= upper_array_white, inplace = True)
+```
+We quickly check the descriptive statitics of the quality column of the red and white wine data sets after removing the outliers. We also redraw the box-and-whisker plot as a double check. 
+
+```python
+#Quickly Check the descriptive statistics of red and white wine
+print(red_wine_df['quality'].describe())
+print(white_wine_df['quality'].describe())
+#Print box and whisker plot without outliers 
+
+fig, axes = plt.subplots(1,2)
+axes[0].boxplot(red_wine_df['quality'])
+axes[0].set_xlabel('Red Wine')
+axes[0].set_xticks([])
+
+axes[1].boxplot(white_wine_df['quality'])
+axes[1].set_xlabel('White Wine')
+axes[1].set_xticks([])
+
+#Labels and title 
+for ax in axes:
+    ax.set_ylabel("Quality Score")
+plt.suptitle("Box-and-Whisker Plot of Wine Quality")
+fig.subplots_adjust(left=0.08, right=0.98, bottom=0.05, top=0.9,
+                    hspace=0.4, wspace=0.3)
+plt.show()
+```
+  >output
+```
+count    1571.000000
+mean        5.625716
+std         0.745227
+min         4.000000
+25%         5.000000
+50%         6.000000
+75%         6.000000
+max         7.000000
+Name: quality, dtype: float64
+count    4698.000000
+mean        5.807791
+std         0.774217
+min         4.000000
+25%         5.000000
+50%         6.000000
+75%         6.000000
+max         7.000000
+Name: quality, dtype: float64
+```
+![box and whisker with outliers removed](https://github.com/user-attachments/assets/f1682ca0-65cf-4782-9a01-6af32e2838f1)
+
+Visually we can verify that the outliers have been removed. The red wine data set had 28 samples removed and the white wine data set had 200 samples removed. The mean's of both red and white wine decreased slightly. Now that the outliers have been removed we proceed to the next step of hypothesis testing. 
+
+## Hypothesis Testing 
 
 
