@@ -35,3 +35,17 @@ Our client is concerned with  assessing the quality of red and white wine. Speci
 This data sent has been traditionally used for classification and regression modeling. The goal of this project is to apply A/B Hypothesis Testing and provide business oriented recommendations based on this result. 
 
 ## Data Proceccessing
+The first step in data processing is importing the revelant libraries and loading the csv. 
+```python
+import pandas as pd 
+import numpy as np
+import matplotlib.pyplot as plt
+red_wine_df = pd.read_csv('/Users/carloszamora/Downloads/wine+quality/winequality-red.csv',sep=";")
+white_wine_df = pd.read_csv('/Users/carloszamora/Downloads/wine+quality/winequality-white.csv',sep=";")
+# Create additional column in both dataframes specifying the color 
+red_wine_df['Color'] = 'red'
+white_wine_df['Color'] = 'white'
+#Combine the data frames 
+frames = [red_wine_df,white_wine_df]
+combined_wine = pd.concat(frames)
+```
