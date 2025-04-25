@@ -7,9 +7,9 @@ The data sets contain a quality rating, from a scale of 1 to 10, for each indivi
 ## Data Set 
 
 ### Source 
-  The two data sets are related to **red and ** white variants of the Portoguese 'Vinho Verde' wine. Due to 
-  privacy and logistic issues, only physiochemical (inputs) and sensory (the output) variables are  
-  available (e.g. there is no data about grape types, wine brands, wine selling price, etc.).
+  >The two data sets are related to **red and ** white variants of the Portoguese 'Vinho Verde' wine. Due to 
+  >privacy and logistic issues, only physiochemical (inputs) and sensory (the output) variables are  
+  >available (e.g. there is no data about grape types, wine brands, wine selling price, etc.).
 
 [Reference Paper](https://archive.ics.uci.edu/dataset/186/wine+quality)
 
@@ -48,4 +48,33 @@ white_wine_df['Color'] = 'white'
 #Combine the data frames 
 frames = [red_wine_df,white_wine_df]
 combined_wine = pd.concat(frames)
+```
+We examine the summary statistics of the quality score for each wine type. Additionally, we take a look at a look at the distribution of quality for score for each type of wine. This will provide high-level insight on how to performing our hypothesis test. 
+
+```python
+print(red_wine_df['quality'].describe())
+print(white_wine_df['quality'].describe())
+#Take a Look at the distribution of the wine quality based on color
+
+```
+The output is shown below
+```
+count    1599.000000
+mean        5.636023
+std         0.807569
+min         3.000000
+25%         5.000000
+50%         6.000000
+75%         6.000000
+max         8.000000
+Name: quality, dtype: float64
+count    4898.000000
+mean        5.877909
+std         0.885639
+min         3.000000
+25%         5.000000
+50%         6.000000
+75%         6.000000
+max         9.000000
+Name: quality, dtype: float64
 ```
