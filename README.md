@@ -7,7 +7,7 @@ The data sets contain a quality rating, from a scale of 1 to 10, for each indivi
 ## Data Set 
 
 ### Source 
-  >The two data sets are related to **red and ** white variants of the Portoguese 'Vinho Verde' wine. Due to 
+  >The two data sets are related to **red** and **white** variants of the Portuguese 'Vinho Verde' wine. Due to 
   >privacy and logistic issues, only physiochemical (inputs) and sensory (the output) variables are  
   >available (e.g. there is no data about grape types, wine brands, wine selling price, etc.).
 
@@ -32,7 +32,7 @@ Variables:
 ## Problem Statement
 Our client is concerned with  assessing the quality of red and white wine. Specifically, determining if there is a significant difference in the quality between the two types of wine. The findings could lead to changes in material orders, wine selection availability to customers, and potential changes in the cultivating procress. 
 
-This data sent has been traditionally used for classification and regression modeling. The goal of this project is to apply A/B Hypothesis Testing and provide business oriented recommendations based on this result. 
+This data set has been traditionally used for classification and regression modeling. However,the goal of this project is to apply A/B Hypothesis Testing and provide business oriented recommendations based on the result. 
 
 ## Data Proceccessing
 The first step in data processing is importing the revelant libraries and loading the csv. 
@@ -57,7 +57,7 @@ print(white_wine_df['quality'].describe())
 #Take a Look at the distribution of the wine quality based on color
 
 ```
-The output is shown below
+  >The output is shown below
 ```
 count    1599.000000
 mean        5.636023
@@ -79,4 +79,15 @@ max         9.000000
 Name: quality, dtype: float64
 ```
 ![red_white_wine_distribution](https://github.com/user-attachments/assets/a7f7bc27-da1c-4356-8309-e7ecc1055c32)
+
+#### Initial Remarks 
+A quick inspection reveals a similar mean in quality score between the two wines. However, the distrbutions for the white wine appears to be normal while the red wine quality score is close to normal but slightly narrower with a slight left skew. We do not perform any data transformations but we do check for outliers below in the form of a box-and-whisker plot.
+
+```python
+
+```
+  >The output is shown below
+
+
+
 
