@@ -189,7 +189,7 @@ Visually we can verify that the outliers have been removed. The red wine data se
 ## Hypothesis Testing 
 ### Designing the Expirement 
 We want to test if their exist a difference in the mean quality score between red and white wine. Even though white wine quality score has a slightly larger average quality score we cannot say for certain that signicantly better than red wine. Therefore, without making any assumptions, we will perform a **two-tailed test**:  
- **Null Hypothesis** $$H_0: \mu_(red) = \mu_(white) $$
+ **Null Hypothesis** $$H_0: \mu_{\text{red}} = \mu_{\text{white}} $$
 
 
 
