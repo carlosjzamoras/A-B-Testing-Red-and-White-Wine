@@ -28,10 +28,10 @@ Variables:
   * pH
   * sulphates
   * alcohol  
-(based on sensory data)
+(based on sensory data)  
   *quality (score between 0 and 10)
 
-** Problem Statement
+## Problem Statement
 Our client is concerned with  assessing the quality of red and white wine. Specifically, determining if there is a significant difference in the quality between the two types of wine. The findings could lead to changes in material orders, wine selection availability to customers, and potential changes in the cultivating procress. 
 
 This data sent has been traditionally used for classification and regression modeling. The goal of this project is to apply A/B Hypothesis Testing and provide business oriented recommendations based on this result. 
