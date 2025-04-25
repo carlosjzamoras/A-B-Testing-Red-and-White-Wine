@@ -7,7 +7,9 @@ The data sets contain a quality rating, from a scale of 1 to 10, for each indivi
 ## Data Set 
 
 ### Source 
-...The two data sets are related to **red and ** white variants of the Portoguese 'Vinho Verde' wine. Due to ...privacy and logistic issues, only physiochemical (inputs) and sensory (the output) variables are ...available (e.g. there is no data about grape types, wine brands, wine selling price, etc.).
+  The two data sets are related to **red and ** white variants of the Portoguese 'Vinho Verde' wine. Due to 
+  privacy and logistic issues, only physiochemical (inputs) and sensory (the output) variables are  
+  available (e.g. there is no data about grape types, wine brands, wine selling price, etc.).
 
 [Reference Paper](https://archive.ics.uci.edu/dataset/186/wine+quality)
 
@@ -25,7 +27,7 @@ Variables:
   * density
   * pH
   * sulphates
-  * alcohol
+  * alcohol  
 (based on sensory data)
   *quality (score between 0 and 10)
 
