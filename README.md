@@ -187,6 +187,9 @@ Name: quality, dtype: float64
 Visually we can verify that the outliers have been removed. The red wine data set had 28 samples removed and the white wine data set had 200 samples removed. The mean's of both red and white wine decreased slightly. Now that the outliers have been removed we proceed to the next step of hypothesis testing. 
 
 ## Hypothesis Testing 
-**The Cauchy-Schwarz Inequality**
-$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
+### Designing the Expirement 
+We want to test if their exist a difference in the mean quality score between red and white wine. Even though white wine quality score has a slightly larger average quality score we cannot say for certain that signicantly better than red wine. Therefore, without making any assumptions, we will perform a **two-tailed test**:  
+$$ $H_0: \mu_red = \mu_white $$
+
+
 
