@@ -192,6 +192,8 @@ We want to test if their exist a difference in the mean quality score between re
 <p align ="center">
   $$H_0: \mu_{\text{red}} = \mu_{\text{white}} $$
 </p>
-
+<p align ="center">
+  $$H_0: \mu_{\text{red}} \ne \mu_{\text{white}} $$
+</p>
 
 
