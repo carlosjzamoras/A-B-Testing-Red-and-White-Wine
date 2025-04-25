@@ -101,7 +101,8 @@ for ax in axes:
 plt.suptitle("Box-and-Whisker Plot of Wine Quality")
 plt.show()
 ```
-  >The output is shown below
+ >The output is shown below
+
 ![wine box and whisker plot](https://github.com/user-attachments/assets/2094298a-85c2-461c-ad81-40bf498e187d)
 
 There are outliers in both data sets. If we were confident that both data sets were normally distributed we might opt to remove outliers past two standard deviations in both directions from the mean. However, we take a more pragmatic approach and remove ouliers via the _IQR Method_. The IQR method removes data _1.5_ times the interquartile range in both directions from the data set. 
@@ -160,7 +161,7 @@ fig.subplots_adjust(left=0.08, right=0.98, bottom=0.05, top=0.9,
                     hspace=0.4, wspace=0.3)
 plt.show()
 ```
-  >output
+  >output is shown below
 ```
 count    1571.000000
 mean        5.625716
