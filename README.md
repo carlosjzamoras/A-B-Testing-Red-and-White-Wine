@@ -78,3 +78,5 @@ min         3.000000
 max         9.000000
 Name: quality, dtype: float64
 ```
+![red_white_wine_distribution](https://github.com/user-attachments/assets/a7f7bc27-da1c-4356-8309-e7ecc1055c32)
+
