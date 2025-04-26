@@ -247,16 +247,13 @@ W = \frac{\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2}{\sum_{i=1}^{n} (x_i - \ba
 
 where:
 $$ $x_{(i)}$ is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample),  
-   $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$,  
-   $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a   
-    sample of size $n$ from a standard normal distribution,  
-    $n$ is the sample size.$$  
+   $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$, $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a sample of size $n$ from a standard normal distribution, $n$ is the sample size.$$  
 
 The numerator can also be written as:
 
 $$\begin{equation}
-\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2 = (\bm{a}^T \bm{x}_{(sorted)})^2
-\end{equation}$$
+\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2 = (\mathbf{a}^T \mathbf{x}_{(sorted)})^2
+\end{equation}$$  
 
 The denominator is the sample variance (times $n$), ensuring that $W$ lies in the interval $(0, 1]$.
 
