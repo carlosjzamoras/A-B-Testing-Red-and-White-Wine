@@ -246,8 +246,9 @@ W = \frac{\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2}{\sum_{i=1}^{n} (x_i - \ba
 \end{equation}$$
 
 where:
-$$ $x_{(i)}$ is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample),  
-   $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$, $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a sample of size $n$ from a standard normal distribution, $n$ is the sample size.$$  
+$$ x_{(i)} is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample),  
+   $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$,  
+   $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a sample of size $n$ from a standard normal distribution, $n$ is the sample size.$$  
 
 The numerator can also be written as:
 
@@ -259,3 +260,7 @@ The denominator is the sample variance (times $n$), ensuring that $W$ lies in th
 
  A $W$ value close to 1 indicates normality, while smaller values suggest departure from normality. The test's significance is assessed using precomputed critical values or p-values based on $W$ and $n$.
 </p>
+
+>Author's note
+We are essentially comparing an expected variance by the true variance of our sample, the closer to 1 the more normally distrubuted our data is. However, even if the Shapiro-Wilk Test rejects the null hypothesis that our sample distribution is equal to a normal distribution does not mean we cannot use a T-test, there are limitations to the Shapuro-Wilk test that arise when many values in our sample are equal or if our sample size is too small or too large. We interpret the results with caution as our quality score are interger values from 0 to 10.
+
