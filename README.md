@@ -225,8 +225,49 @@ print(required_size)
 ```
 1565
 ```
-Based on our calculation, we require a minimum of 1565 observations from both red and white wine catergories. Fortunately, our data set meets this requirement. 
-
-###Sampling
+Based on our calculation, we require a minimum of 1565 observations from both red and white wine catergories. Fortunately, our data set meets this requirement.
+### Sampling
 Data processing occured above, so at this stage we take a sample size of 1565 for both red and white wine. 
+```python
+#Take a random sample of 1565 from both groups 
+sample_red = red_wine_df.sample(n=1565)
+sample_white=white_wine_df.sample(n=1565)
+frames=[sample_red,sample_white]
+#Combined sample will be used later 
+combined_sample = pd.concat(frames)
+```
+### Normality Assumption (Shapiro-Wilk Test)
+The Shapiro-Wilk Test is a commonly used statistical tool to conduct a normality check, in particular, we are testing if the data in our sample is normally distributed. 
+<p align="center">
+  $$
+  
+The Shapiro-Wilk test statistic $W$ is defined as:
 
+\begin{equation}
+W = \frac{\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
+\end{equation}
+
+\noindent where:
+
+\begin{itemize}
+    \item $x_{(i)}$ is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample),
+    \item $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$,
+    \item $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a sample of size $n$ from a standard normal distribution,
+    \item $n$ is the sample size.
+\end{itemize}
+
+\noindent The numerator can also be written as:
+
+\begin{equation}
+\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2 = (\bm{a}^T \bm{x}_{(sorted)})^2
+\end{equation}
+
+\noindent The denominator is the sample variance (times $n$), ensuring that $W$ lies in the interval $(0, 1]$.
+
+\bigskip
+
+\noindent A $W$ value close to 1 indicates normality, while smaller values suggest departure from normality. The test's significance is assessed using precomputed critical values or p-values based on $W$ and $n$.
+
+\end{document}
+$$
+</p>
