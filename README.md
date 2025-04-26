@@ -296,3 +296,12 @@ $k$ is the number of groups
 <p align="center">
 $N$ is the total number of observations across all groups: $N$ = $$\sum_{i=1}^{k} n_i$$
 </p>
+<p align="center">
+  $n_i$ is the number of observations in group $i$
+</p>
+<p align="center">
+$Z_{ij} = |Y_{ij} - \tilde{Y}_i|$, where $Y_{ij}$ is the $j$-th observation in group $i$, and   
+$\tilde{Y}_i$ is the median (or mean) of group $i$,  
+$\bar{Z}_{i\cdot}$ is the mean of the $Z_{ij}$ values in group $i$,  
+$\bar{Z}_{\cdot\cdot}$ is the overall mean of all $Z_{ij}$ values.
+</p>
