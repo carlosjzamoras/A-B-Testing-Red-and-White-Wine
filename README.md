@@ -359,3 +359,35 @@ t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
 <p align="center">
     $n_1$, $n_2$ are the sample sizes  
 </p>
+We conduct out T-Test in python and import the necessary libraries.
+```python
+#Conduct t-test
+from scipy.stats import ttest_ind
+test_stat, pvalue = ttest_ind(combined_sample[combined_sample["Color"] == 0]["quality"],
+                          combined_sample[combined_sample["Color"]==1]["quality"])
+print(f'T-Test Stat = {test_stat:.4f}, p-value = {pvalue:.4f}')
+```
+>output shown below 
+```
+T-Test Stat = -6.8072, p-value = 0.0000
+```
+In this hypothetical we reject out null hypothesis and conclude that there is a difference in means between the quality score in red and white wine. However, we will proceed to Welch's Test. 
+
+### Unequal variances T-Test (Welch's t-test)
+
+Welch's T-Test is an augmentation of standard T-Test where the assumption of normality in the distrbution between the sample remains but have unequal variances. The formal definition is provided below. 
+<p align="center">
+$$\begin{equation}
+t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
+\end{equation}$$
+</p>
+Where:
+<p align="center">
+$\bar{X}_1$, $\bar{X}_2$ are the sample means of the two groups
+</p>
+<p align="center">
+$s_1^2$, $s_2^2$ are the sample variances
+</p>
+<p align="center">
+$n_1$, $n_2$ are the sample sizes
+</p>
