@@ -290,3 +290,7 @@ The test statistic $W$ is given by:
 $$W = \frac{(N - k)}{(k - 1)} \cdot \frac{\sum_{i=1}^{k} n_i (\bar{Z}_{i\cdot} - \bar{Z}_{\cdot\cdot})^2}{\sum_{i=1}^{k} \sum_{j=1}^{n_i} (Z_{ij} - \bar{Z}_{i\cdot})^2}$$
 </p>
 Where:
+<p align="center">
+$k$ is the number of groups
+</p>
+
