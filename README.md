@@ -285,16 +285,15 @@ Based on the p-values, we reject the null hypotheis underlying the Shapiro-Wilk 
 ### Homegeneity of Variances 
 Before proceeding to a T-test we must check another assumption--the variance of the quality scores between our white and red wine sample. The formal definition is provided below.
 <p align="center">
-  The test statistic $W$ is given by:   
-$$\begin{equation}
-W = \frac{(N - k)}{(k - 1)} \cdot \frac{\sum_{i=1}^{k} n_i (\bar{Z}_{i\cdot} - \bar{Z}_{\cdot\cdot})^2}{\sum_{i=1}^{k} \sum_{j=1}^{n_i} (Z_{ij} - \bar{Z}_{i\cdot})^2}
-\end{equation}$$    
-Where:
-  $k$ is the number of groups,  
-  $N$ is the total number of observations across all groups: $N = \sum_{i=1}^{k} n_i$,  
-  $n_i$ is the number of observations in group $i$,  
-  $Z_{ij} = |Y_{ij} - \tilde{Y}_i|$, where $Y_{ij}$ is the $j$-th observation in group $i$, and   
-  $\tilde{Y}_i$ is the median (or mean) of group $i$,  
-  $\bar{Z}_{i\cdot}$ is the mean of the $Z_{ij}$ values in group $i$,  
-  $\bar{Z}_{\cdot\cdot}$ is the overall mean of all $Z_{ij}$ values.  
+The test statistic $W$ is given by:   
+<p align="center"> 
+$$W = \frac{(N - k)}{(k - 1)} \cdot \frac{\sum_{i=1}^{k} n_i (\bar{Z}_{i\cdot} - \bar{Z}_{\cdot\cdot})^2}{\sum_{i=1}^{k} \sum_{j=1}^{n_i} (Z_{ij} - \bar{Z}_{i\cdot})^2}$$
 </p>
+Where:
+$k$ is the number of groups,  
+$N$ is the total number of observations across all groups: $N = \sum_{i=1}^{k} n_i$,  
+$n_i$ is the number of observations in group $i$,  
+$Z_{ij} = |Y_{ij} - \tilde{Y}_i|$, where $Y_{ij}$ is the $j$-th observation in group $i$, and   
+$\tilde{Y}_i$ is the median (or mean) of group $i$,  
+$\bar{Z}_{i\cdot}$ is the mean of the $Z_{ij}$ values in group $i$,  
+$\bar{Z}_{\cdot\cdot}$ is the overall mean of all $Z_{ij}$ values.  
