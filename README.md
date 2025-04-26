@@ -244,9 +244,7 @@ The Shapiro-Wilk test statistic $W$ is defined as:
 $$\begin{equation}
 W = \frac{\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
 \end{equation}$$
-
 where:
-
 $$\begin{itemize}
     \item $x_{(i)}$ is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample),
     \item $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$,
@@ -255,7 +253,6 @@ $$\begin{itemize}
 \end{itemize}$$
 
 The numerator can also be written as:
-
 $$\begin{equation}
 \left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2 = (\bm{a}^T \bm{x}_{(sorted)})^2
 \end{equation}$$
