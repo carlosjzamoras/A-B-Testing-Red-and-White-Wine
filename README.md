@@ -352,6 +352,10 @@ t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
 </p>
 <p align="center">
   $\bar{X}_1$, $\bar{X}_2$ are the sample means
-    $s_1^2$, $s_2^2$ are the sample variances  
+</p>
+<p align="center">
+   $s_1^2$, $s_2^2$ are the sample variances  
+</p>
+<p align="center">
     $n_1$, $n_2$ are the sample sizes  
 </p>
