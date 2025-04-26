@@ -193,7 +193,14 @@ We want to test if their exist a difference in the mean quality score between re
   $$H_0: \mu_{\text{red}} = \mu_{\text{white}} $$
 </p>
 <p align ="center">
-  $$H_0: \mu_{\text{red}} \ne \mu_{\text{white}} $$
+  $$H_A: \mu_{\text{red}} \ne \mu_{\text{white}} $$
 </p>
 
+### Variable Selection and Modification 
+Traditionally there are two groups, a _control_ and a _treatment_, however in this case study assigning red and white wine to either group is arbitrary. For our purposes we will treat the red wine as the control and the white wine as the treatment. We will codify red and white wine as binary variables later on. 
+  > - 0: Red Wine
+  > - 1: White Wine
+## Verifying Sample Size 
+We are are only testing the wine samples from the north of Portugal. However, for verification purposes we complete _power analysis_ to verify that out sample size is sufficient. Before we do that we have to make certain assumptions before calculating our _power analysis_. That an average score for wine quality is 5 and anything above 5 is considered _above average_ in quality. Lets assume that currently 50% of the red wine is above average and intervention takes place if 55% of white wine is above average. 
 
+  -**Power of the test** (1-&Beta)
