@@ -311,3 +311,36 @@ $\bar{Z}_{i\cdot}$ is the mean of the $Z_{ij}$ values in group $i$
 <p align="center">
 $$\bar{Z}_{\cdot\cdot}$$ is the overall mean of all $Z_{ij}$ values.
 </p>
+>Author's note
+The formulation essentially calculates a variability score to give us an F-Statistics that results in a p-value. The scipy library has a function to calculate the score for us.
+```python
+#Levene Test
+from scipy.stats import levene
+
+#Replace the red and white in the "Color" column with 0 and 1, respectively
+```
+combined_sample['Color'] = combined_sample['Color'].replace({'red':0,'white':1} )
+test_stat, pvalue = levene(combined_sample[combined_sample["Color"] == 0]["quality"],
+                          combined_sample[combined_sample["Color"]==1]["quality"])
+
+print(f'\n     * Levene Stat = {test_stat:.4f},p-value = {pvalue:.4f}')
+```
+>output shown below
+```
+     * Levene Stat = 7.7964,p-value = 0.0053
+```
+Our sample distrbution has failed both the normality test for their distribution and the homegenous variance test. At this point it is not advised to conduct a T-test for the difference of the sample means. We will proceed to the Non-Parametric Testing by performing the Mann-Whitney U-test. 
+
+####Concluding remarks regarding assumption verification
+If our normality and homegeneity assumptions had been met, then we could have proceeded with a T-test for difference in means. If however, normality had been met but not homogeneity, a _Welch's Test_ could have been conducted. However, in our case both assumptions were not met. Our hypothesis testing will be done using non-parametric testing, namely, Mann-Whitney U-Test. 
+   >Author's Note (Parametric vs Non-Parametric Testing)
+If we made an underlying assumption about the underlying distribution of our sample (Gaussian), we could proceed with parametric testing. However, since we are unable to safely assume any underlying distribution of our sample, we proceed with non-parametric testing.  
+
+For the sake of completeness, we will define and perform a T-test, a Welch's Test, and the Mann-Whitney Test. The testing of our hypothesis testing will come from the Mann-Whitney Test. 
+
+### T-Test (Independent Two Sample T-test)
+A Student's T-Test is often used to test is their is a statistically significant difference in response between two groups. In this case study, we could conduct a two-sample T-Test for difference in means. The assumptions have to be met:  
+ - The two samples must be equal in size
+ - The samples closelt follow a normal distribution
+ - The two distribution have the same variances  
+The formal definition is provided below. 
