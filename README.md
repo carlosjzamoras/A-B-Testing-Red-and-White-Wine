@@ -283,16 +283,16 @@ Results of White Wine Shapiro-Wilk Test: ShapiroResult(statistic=np.float64(0.85
 Based on the p-values, we reject the null hypotheis underlying the Shapiro-Wilk Test. There is sufficient evidence to reject the statement that the quality scores from our sample distribution are equal to a normal distribution. 
 
 ### Homegeneity of Variances(Levene's Test)
-Before proceeding to a T-test we must check another assumption--the variance of the quality scores between our white and red wine sample. The formal definition is provided below.
+Before proceeding to a T-test we must check another assumption--the variance of the quality scores between our white and red wine sample. We conduct Levene's Test to check that the variance of our two samples are equal.  The formal definition is provided below.
 <p align="center">
 The test statistic $W$ is given by:   
 <p align="center"> 
 $$W = \frac{(N - k)}{(k - 1)} \cdot \frac{\sum_{i=1}^{k} n_i (\bar{Z}_{i\cdot} - \bar{Z}_{\cdot\cdot})^2}{\sum_{i=1}^{k} \sum_{j=1}^{n_i} (Z_{ij} - \bar{Z}_{i\cdot})^2}$$
 </p>
 Where:
-$$ $k$ is the number of groups,  
-$N$ is the total number of observations across all groups: $N = \sum_{i=1}^{k} n_i$,  
-$n_i$ is the number of observations in group $i$,  
+$$ $k$ is the number of groups, $N$ is the total number of observations across all groups:$$
+$$ $N = \sum_{i=1}^{k} n_i$, $$
+$$ $n_i$ is the number of observations in group $i$,$$  
 $Z_{ij} = |Y_{ij} - \tilde{Y}_i|$, where $Y_{ij}$ is the $j$-th observation in group $i$, and   
 $\tilde{Y}_i$ is the median (or mean) of group $i$,  
 $\bar{Z}_{i\cdot}$ is the mean of the $Z_{ij}$ values in group $i$,  
