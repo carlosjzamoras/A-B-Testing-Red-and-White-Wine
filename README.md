@@ -294,5 +294,5 @@ Where:
 $k$ is the number of groups
 </p>
 <p align="center">
-$N$ is the total number of observations across all groups: $N$ = \sum_{i=1}^{k} n_i$
+$N$ is the total number of observations across all groups: $N$ = $$\sum_{i=1}^{k} n_i$$
 </p>
