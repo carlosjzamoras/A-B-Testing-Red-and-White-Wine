@@ -286,7 +286,7 @@ Based on the p-values, we reject the null hypotheis underlying the Shapiro-Wilk 
 Before proceeding to a T-test we must check another assumption--the variance of the quality scores between our white and red wine sample. The formal definition is provided below.
 <p align="center">
   The test statistic $W$ is given by:  
-  $$\begin{equation}
+$$\begin{equation}
 W = \frac{(N - k)}{(k - 1)} \cdot \frac{\sum_{i=1}^{k} n_i (\bar{Z}_{i\cdot} - \bar{Z}_{\cdot\cdot})^2}{\sum_{i=1}^{k} \sum_{j=1}^{n_i} (Z_{ij} - \bar{Z}_{i\cdot})^2}
 \end{equation}$$  
 Where:
