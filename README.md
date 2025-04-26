@@ -360,34 +360,46 @@ t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
     $n_1$, $n_2$ are the sample sizes  
 </p>
 We conduct out T-Test in python and import the necessary libraries.
+
 ```python
 #Conduct t-test
 from scipy.stats import ttest_ind
 test_stat, pvalue = ttest_ind(combined_sample[combined_sample["Color"] == 0]["quality"],
-                          combined_sample[combined_sample["Color"]==1]["quality"])
+                          combined_sample[combined_sample["Color"]==1]["quality"],equal_var=True)
 print(f'T-Test Stat = {test_stat:.4f}, p-value = {pvalue:.4f}')
-```
+````
 >output shown below 
+
 ```
-T-Test Stat = -6.8072, p-value = 0.0000
+T-Test Stat = -6.9213, p-value = 0.0000
 ```
 In this hypothetical we reject out null hypothesis and conclude that there is a difference in means between the quality score in red and white wine. However, we will proceed to Welch's Test. 
 
 ### Unequal variances T-Test (Welch's t-test)
 
-Welch's T-Test is an augmentation of standard T-Test where the assumption of normality in the distrbution between the sample remains but have unequal variances. The formal definition is provided below. 
-<p align="center">
-$$\begin{equation}
-t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
-\end{equation}$$
+Welch's T-Test is an augmentation of standard T-Test where the assumption of normality in the distrbution between the sample remains but have unequal variances. The the formulation is almost identical to the Student's T-test where sample variances are **not pooled**. We proceed to conduct the test. 
+
+```python
+#Conduct Welch's test
+#Same as above, just set equal variance to false 
+#Set Variances to false
+from scipy.stats import ttest_ind
+test_stat, pvalue = ttest_ind(combined_sample[combined_sample["Color"] == 0]["quality"],
+                          combined_sample[combined_sample["Color"]==1]["quality"],equal_var=False)
+print(f'Welch Test Stat = {test_stat:.4f}, p-value = {pvalue:.4f}')
+```
+>output shown below
+```
+Welch Test Stat = -6.3897, p-value = 0.0000
+```
+In this scenario, we would still reject the null hypothesis if our sample distributions were normal but had unequal variances. 
+
+### Non-Parametric Testing (Mann-Whitney U Test)
+Finally, we conduct our Mann-Whitney Test. It is important to note that the Mann-Whitney U Test does **not** directly test for difference in means. Rather, it test if two sample distributions are equal--if the central tendency's of two samples are equal or not, based on ordinal data. Recall the intitial observations made in the histograms above, they have a similiar distribution but are slightly different--the red wine has a slight hortizontal shift compared to the white wine. The Mann-Whitney U Test is sensitive to differences in central tendencies only when the distributions between two samples are similarly shaped and spread. The results from the Mann-Whitney U Test can be interpretted as evidence in a shift in _medians_, which for practical purposes suggest a difference in means--a direct result in the shift in distributions.  
+The formal definition provided by the Mann-Whitney U Test is shown below. 
+<p align="central">
+  mann
 </p>
-Where:
-<p align="center">
-$\bar{X}_1$, $\bar{X}_2$ are the sample means of the two groups
-</p>
-<p align="center">
-$s_1^2$, $s_2^2$ are the sample variances
-</p>
-<p align="center">
-$n_1$, $n_2$ are the sample sizes
-</p>
+
+
+
