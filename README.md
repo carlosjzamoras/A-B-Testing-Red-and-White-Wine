@@ -263,5 +263,38 @@ The denominator is the sample variance (times $n$), ensuring that $W$ lies in th
 
 >Author's note
 
-We are essentially comparing an expected variance by the true variance of our sample, the closer to 1 the more normally distrubuted our data is. However, even if the Shapiro-Wilk Test rejects the null hypothesis that our sample distribution is equal to a normal distribution does not mean we cannot use a T-test, there are limitations to the Shapuro-Wilk test that arise when many values in our sample are equal or if our sample size is too small or too large. We interpret the results with caution as our quality score are interger values from 0 to 10.
+We are essentially comparing an expected variance by the true variance of our sample, the closer to 1 the more normally distrubuted our data is. However, even if the Shapiro-Wilk Test rejects the null hypothesis that our sample distribution is equal to a normal distribution does not mean we cannot use a T-test, there are limitations to the Shapiro-Wilk test that arise when many values in our sample are equal or if our sample size is too small or too large. We interpret the results with caution as our quality score are interger values from 0 to 10.
 
+#### Shapiro-Wilk Test in Python
+The scipy python library we conduct our Shapiro-Wilk Test for us. We conduct a Shapiro-Wilk test for both red and white wine groups from our sample. 
+```python
+from scipy.stats import shapiro
+
+red_shapiro = shapiro(sample_red['quality'])
+white_shapiro = shapiro(sample_white['quality'])
+print("Result of Red Wine Shaprio-Wilk Test:",red_shapiro)
+print("Results of White Wine Shapiro-Wilk Test:",white_shapiro)
+```
+  >output is shown below
+```
+Result of Red Wine Shaprio-Wilk Test: ShapiroResult(statistic=np.float64(0.8339943241222685), pvalue=np.float64(1.5134864505375702e-37))
+Results of White Wine Shapiro-Wilk Test: ShapiroResult(statistic=np.float64(0.8511814672686954), pvalue=np.float64(4.9953622517226484e-36))
+```
+Based on the p-values, we reject the null hypotheis underlying the Shapiro-Wilk Test. There is sufficient evidence to reject the statement that the quality scores from our sample distribution are equal to a normal distribution. 
+
+### Homegeneity of Variances 
+Before proceeding to a T-test we must check another assumption--the variance of the quality scores between our white and red wine sample. The formal definition is provided below.
+<p align="center">
+  The test statistic $W$ is given by:  
+  $$\begin{equation}
+W = \frac{(N - k)}{(k - 1)} \cdot \frac{\sum_{i=1}^{k} n_i (\bar{Z}_{i\cdot} - \bar{Z}_{\cdot\cdot})^2}{\sum_{i=1}^{k} \sum_{j=1}^{n_i} (Z_{ij} - \bar{Z}_{i\cdot})^2}
+\end{equation}$$  
+Where:
+  $k$ is the number of groups,
+  $N$ is the total number of observations across all groups: $N = \sum_{i=1}^{k} n_i$,
+  $n_i$ is the number of observations in group $i$,
+  $Z_{ij} = |Y_{ij} - \tilde{Y}_i|$, where $Y_{ij}$ is the $j$-th observation in group $i$, and 
+  $\tilde{Y}_i$ is the median (or mean) of group $i$,
+  $\bar{Z}_{i\cdot}$ is the mean of the $Z_{ij}$ values in group $i$,
+  $\bar{Z}_{\cdot\cdot}$ is the overall mean of all $Z_{ij}$ values.
+</p>
