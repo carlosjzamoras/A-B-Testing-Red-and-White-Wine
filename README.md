@@ -342,10 +342,16 @@ For the sake of completeness, we will define and perform a T-test, a Welch's Tes
 A Student's T-Test is often used to test is their is a statistically significant difference in response between two groups. In this case study, we could conduct a two-sample T-Test for difference in means. The assumptions have to be met:  
  - The two samples must be equal in size
  - The samples closelt follow a normal distribution
- - The two distribution have the same variancee
+ - The two distribution have the same variance
+  
 The formal definition is provided below. 
 <p align ="center">
 $$\begin{equation}
 t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
 \end{equation}$$
+</p>
+<p align="center">
+  $\bar{X}_1$, $\bar{X}_2$ are the sample means  
+  $s_1^2$, $s_2^2$ are the sample variances  
+  $n_1$, $n_2$ are the sample sizes  
 </p>
