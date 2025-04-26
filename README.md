@@ -246,14 +246,14 @@ W = \frac{\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2}{\sum_{i=1}^{n} (x_i - \ba
 \end{equation}$$
 
 where:
-$$\begin{itemize}
-    \item $x_{(i)}$ is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample),
-    \item $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$,
-    \item $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a sample of size $n$ from a standard normal distribution,
-    \item $n$ is the sample size.
-\end{itemize}$$
+$$ $x_{(i)}$ is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample),
+   $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$,
+   $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a 
+    sample of size $n$ from a standard normal distribution,
+    $n$ is the sample size.$$
 
 The numerator can also be written as:
+
 $$\begin{equation}
 \left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2 = (\bm{a}^T \bm{x}_{(sorted)})^2
 \end{equation}$$
