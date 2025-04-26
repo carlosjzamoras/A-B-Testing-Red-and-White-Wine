@@ -200,13 +200,33 @@ We want to test if their exist a difference in the mean quality score between re
 Traditionally there are two groups, a _control_ and a _treatment_, however in this case study assigning red and white wine to either group is arbitrary. For our purposes we will treat the red wine as the control and the white wine as the treatment. We will codify red and white wine as binary variables later on. 
   > - 0: Red Wine
   > - 1: White Wine
-## Verifying Sample Size 
+### Verifying Sample Size 
 We are are only testing the wine samples from the north of Portugal. However, for verification purposes we complete _power analysis_ to verify that out sample size is sufficient. Before we do that we have to make certain assumptions before calculating our _power analysis_. That an average score for wine quality is 5 and anything above 5 is considered _above average_ in quality. Lets assume that currently 50% of the red wine is above average and intervention takes place if 55% of white wine is above average. 
 
   -**Power of the test** $$(1-\beta)$$ We use standard convention and set beta to .2.  
   -**Alpha** $$(\alpha)$$ We use standard convention and set alpha to 0.05  
   -**Effect Size** Discussed above, we expect there to be a 5% difference in quality between the two wines  
 The code snippet below calculates required sample size
+```python
+##Calculate the minimum number of observations for each group
+import statsmodels.stats.api as sms
+from math import ceil
+effect_size= sms.proportion_effectsize(0.5,0.55)
+required_size=sms.NormalIndPower().solve_power(
+    effect_size,
+    power=0.8,
+    alpha=0.05,
+    ratio=1
+)
+required_size = ceil(required_size)
+print(required_size)
 ```
+  >output is shown below
 ```
+1565
+```
+Based on our calculation, we require a minimum of 1565 observations from both red and white wine catergories. Fortunately, our data set meets this requirement. 
+
+###Sampling
+Data processing occured above, so at this stage we take a sample size of 1565 for both red and white wine. 
 
