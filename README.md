@@ -239,33 +239,28 @@ combined_sample = pd.concat(frames)
 ### Normality Assumption (Shapiro-Wilk Test)
 The Shapiro-Wilk Test is a commonly used statistical tool to conduct a normality check, in particular, we are testing if the data in our sample is normally distributed. 
 <p align="center"> 
-$$The Shapiro-Wilk test statistic $W$ is defined as:$$
+The Shapiro-Wilk test statistic $W$ is defined as:
 
 $$\begin{equation}
 W = \frac{\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
 \end{equation}$$
 
-\noindent where:
+where:
 
-\begin{itemize}
+$$\begin{itemize}
     \item $x_{(i)}$ is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample),
     \item $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$,
     \item $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a sample of size $n$ from a standard normal distribution,
     \item $n$ is the sample size.
-\end{itemize}
+\end{itemize}$$
 
-\noindent The numerator can also be written as:
+The numerator can also be written as:
 
-\begin{equation}
+$$\begin{equation}
 \left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2 = (\bm{a}^T \bm{x}_{(sorted)})^2
-\end{equation}
+\end{equation}$$
 
-\noindent The denominator is the sample variance (times $n$), ensuring that $W$ lies in the interval $(0, 1]$.
+The denominator is the sample variance (times $n$), ensuring that $W$ lies in the interval $(0, 1]$.
 
-\bigskip
-
-\noindent A $W$ value close to 1 indicates normality, while smaller values suggest departure from normality. The test's significance is assessed using precomputed critical values or p-values based on $W$ and $n$.
-
-\end{document}
-$$
+ A $W$ value close to 1 indicates normality, while smaller values suggest departure from normality. The test's significance is assessed using precomputed critical values or p-values based on $W$ and $n$.
 </p>
