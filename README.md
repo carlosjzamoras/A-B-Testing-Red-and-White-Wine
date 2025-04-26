@@ -238,14 +238,12 @@ combined_sample = pd.concat(frames)
 ```
 ### Normality Assumption (Shapiro-Wilk Test)
 The Shapiro-Wilk Test is a commonly used statistical tool to conduct a normality check, in particular, we are testing if the data in our sample is normally distributed. 
-<p align="center">
-  $$
-  
-The Shapiro-Wilk test statistic $W$ is defined as:
+<p align="center"> 
+$$The Shapiro-Wilk test statistic $W$ is defined as:$$
 
-\begin{equation}
+$$\begin{equation}
 W = \frac{\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
-\end{equation}
+\end{equation}$$
 
 \noindent where:
 
