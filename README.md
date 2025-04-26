@@ -203,9 +203,9 @@ Traditionally there are two groups, a _control_ and a _treatment_, however in th
 ## Verifying Sample Size 
 We are are only testing the wine samples from the north of Portugal. However, for verification purposes we complete _power analysis_ to verify that out sample size is sufficient. Before we do that we have to make certain assumptions before calculating our _power analysis_. That an average score for wine quality is 5 and anything above 5 is considered _above average_ in quality. Lets assume that currently 50% of the red wine is above average and intervention takes place if 55% of white wine is above average. 
 
-  -**Power of the test** $$(1-/beta)$$ We use standard convention and set beta to .2. 
-  -**Alpha** $$(/alpha)$$ We use standard convention and set alpha to 0.05
-  -**Effect Size** Discussed above, we expect there to be a 5% difference in quality between the two wines
+  -**Power of the test** $$(1-\beta)$$ We use standard convention and set beta to .2.  
+  -**Alpha** $$(\alpha)$$ We use standard convention and set alpha to 0.05  
+  -**Effect Size** Discussed above, we expect there to be a 5% difference in quality between the two wines  
 The code snippet below calculates required sample size
 ```
 ```
