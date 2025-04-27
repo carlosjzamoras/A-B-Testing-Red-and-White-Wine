@@ -7,8 +7,8 @@ The data sets contain a quality rating, from a scale of 1 to 10, for each indivi
 ## Data Set 
 
 ### Source 
-  >The two data sets are related to **red** and **white** variants of the Portuguese 'Vinho Verde' wine. Due to 
-  >privacy and logistic issues, only physiochemical (inputs) and sensory (the output) variables are  
+  >The two data sets are related to **red** and **white** variants of the Portuguese 'Vinho Verde' wine. > 
+  >Due to privacy and logistic issues, only physiochemical (inputs) and sensory (the output) variables are  
   >available (e.g. there is no data about grape types, wine brands, wine selling price, etc.).
 
 [Reference Paper](https://archive.ics.uci.edu/dataset/186/wine+quality)
@@ -30,12 +30,12 @@ Variables:
   * quality (score between 0 and 10)
 
 ## Problem Statement
-Our client is concerned with  assessing the quality of red and white wine. Specifically, determining if there is a significant difference in the quality between the two types of wine. The findings could lead to changes in material orders, wine selection availability to customers, and potential changes in the cultivating procress. 
+Our client is concerned with  assessing the quality of red and white wine. Specifically, determining if there is a significant difference in the quality between the two types of wine. The findings could lead to changes in material orders, wine selection availability to customers, and potential changes in the cultivating process. 
 
-This data set has been traditionally used for classification and regression modeling. However,the goal of this project is to apply A/B Hypothesis Testing and provide business oriented recommendations based on the result. 
+This data set has been traditionally used for classification and regression modeling. However, the goal of this project is to apply A/B Hypothesis Testing and provide business oriented recommendations based on the result. 
 
 ## Data Proceccessing
-The first step in data processing is importing the revelant libraries and loading the csv. 
+The first step in to import the revelant libraries and loading the csv. 
 ```python
 import pandas as pd 
 import numpy as np
@@ -49,13 +49,12 @@ white_wine_df['Color'] = 'white'
 frames = [red_wine_df,white_wine_df]
 combined_wine = pd.concat(frames)
 ```
-We examine the summary statistics of the quality score for each wine type. Additionally, we take a look at a look at the distribution of quality for score for each type of wine. This will provide high-level insight on how to performing our hypothesis test. 
+We examine the summary statistics of the quality score for each wine type. Additionally, we take a look at  the quality score distribution each type of wine. This will provide high-level insight on how we should perform our hypothesis test. 
 
 ```python
 print(red_wine_df['quality'].describe())
 print(white_wine_df['quality'].describe())
 #Take a Look at the distribution of the wine quality based on color
-
 ```
   >The output is shown below
 ```
@@ -81,7 +80,7 @@ Name: quality, dtype: float64
 ![red_white_wine_distribution](https://github.com/user-attachments/assets/a7f7bc27-da1c-4356-8309-e7ecc1055c32)
 
 #### Initial Remarks 
-A quick inspection reveals a similar mean in quality score between the two wines. However, the distrbutions for the white wine appears to be normal while the red wine quality score is close to normal but slightly narrower with a slight left skew. We do not perform any data transformations but we do check for outliers below in the form of a box-and-whisker plot.
+A quick inspection reveals a similar mean in quality score between the two wines. However, the distrbutions for the white wine appears to be normal while the red wine quality score is close to normal but shows slightly different peak. We do not perform any data transformations but we do check for outliers below in the form of a box-and-whisker plot.
 
 ```python
 # Check for outliers
@@ -105,7 +104,7 @@ plt.show()
 
 ![wine box and whisker plot](https://github.com/user-attachments/assets/2094298a-85c2-461c-ad81-40bf498e187d)
 
-There are outliers in both data sets. If we were confident that both data sets were normally distributed we might opt to remove outliers past two standard deviations in both directions from the mean. However, we take a more pragmatic approach and remove ouliers via the _IQR Method_. The IQR method removes data _1.5_ times the interquartile range in both directions from the data set. 
+There are outliers in both data sets. If we were confident that both data sets were normally distributed we might opt to remove samples past two standard deviations in both directions from the mean. However, we take a more pragmatic approach and remove ouliers via the _IQR Method_. The IQR method removes data _1.5_ times the interquartile range in both directions from the data set. 
 
 ```python
 #There are outliers, use the IQR method
@@ -136,7 +135,7 @@ red_wine_df.drop(index=upper_array_red,inplace = True)
 white_wine_df.drop(index = lower_array_white,inplace = True)
 white_wine_df.drop(index= upper_array_white, inplace = True)
 ```
-We quickly check the descriptive statitics of the quality column of the red and white wine data sets after removing the outliers. We also redraw the box-and-whisker plot as a double check. 
+We quickly check the descriptive statitics of the quality column of the red and white wine data sets after removing the outliers. We also redraw the box-and-whisker plot. 
 
 ```python
 #Quickly Check the descriptive statistics of red and white wine
@@ -188,7 +187,7 @@ Visually we can verify that the outliers have been removed. The red wine data se
 
 ## Hypothesis Testing 
 ### Designing the Expirement 
-We want to test if their exist a difference in the mean quality score between red and white wine. Even though white wine quality score has a slightly larger average quality score we cannot say for certain that signicantly better than red wine. Therefore, without making any assumptions, we will perform a **two-tailed test**:  
+We want to test if there exist a difference in the mean quality score between red and white wine. Even though white wine quality score has a slightly larger average quality score we cannot say for certain that the difference is statistically significant. Therefore, without making any assumptions, we will perform a **two-tailed test**. The null and alternative hypothesis are shown below:  
 <p align ="center">
   $$H_0: \mu_{\text{red}} = \mu_{\text{white}} $$
 </p>
@@ -197,15 +196,15 @@ We want to test if their exist a difference in the mean quality score between re
 </p>
 
 ### Variable Selection and Modification 
-Traditionally there are two groups, a _control_ and a _treatment_, however in this case study assigning red and white wine to either group is arbitrary. For our purposes we will treat the red wine as the control and the white wine as the treatment. We will codify red and white wine as binary variables later on. 
+Traditionally, in A/B testing there is a _control_ and a _treatment_, however, in this case study assigning red and white wine to either group is arbitrary. For our purposes we will treat the red wine as the control and the white wine as the treatment. We will codify red and white wine as binary variables later on. 
   > - 0: Red Wine
   > - 1: White Wine
 ### Verifying Sample Size 
-We are are only testing the wine samples from the north of Portugal. However, for verification purposes we complete _power analysis_ to verify that out sample size is sufficient. Before we do that we have to make certain assumptions before calculating our _power analysis_. That an average score for wine quality is 5 and anything above 5 is considered _above average_ in quality. Lets assume that currently 50% of the red wine is above average and intervention takes place if 55% of white wine is above average. 
+We are are only testing the wine samples from the north of Portugal. However, for verification purposes we complete a _power analysis_ to verify that our sample size is sufficient. Before we do that we have to make certain assumptions before calculating the _power analysis_. Viewing the current distribution of score, and using some professional judgement, we claim that an average score for wine quality is 5 and anything above 5 is considered _above average_. Lets assume that currently 50% of the red wine is above average and intervention takes place if 55% of white wine is above average. 
 
   -**Power of the test** $$(1-\beta)$$ We use standard convention and set beta to .2.  
   -**Alpha** $$(\alpha)$$ We use standard convention and set alpha to 0.05  
-  -**Effect Size** Discussed above, we expect there to be a 5% difference in quality between the two wines  
+  -**Effect Size** Discussed above, intervention occurs is there is a 5% difference in quality between the two wines  
 The code snippet below calculates required sample size
 ```python
 ##Calculate the minimum number of observations for each group
@@ -236,6 +235,7 @@ frames=[sample_red,sample_white]
 #Combined sample will be used later 
 combined_sample = pd.concat(frames)
 ```
+Before selecting the appropriate method of testing our hypothesis, we must check if certain assumptions are met.
 ### Normality Assumption (Shapiro-Wilk Test)
 The Shapiro-Wilk Test is a commonly used statistical tool to conduct a normality check, in particular, we are testing if the data in our sample is normally distributed. 
 <p align="center"> 
@@ -246,9 +246,9 @@ W = \frac{\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2}{\sum_{i=1}^{n} (x_i - \ba
 \end{equation}$$
 
 where:
-$$ x_{(i)} is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample),  
+ x_{(i)} is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample)  
    $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$,  
-   $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a sample of size $n$ from a standard normal distribution, $n$ is the sample size.$$  
+   $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a sample of size $n$ from a standard normal distribution, $n$ is the sample size.  
 
 The numerator can also be written as:
 
@@ -284,7 +284,6 @@ Based on the p-values, we reject the null hypotheis underlying the Shapiro-Wilk 
 
 ### Homegeneity of Variances(Levene's Test)
 Before proceeding to a T-test we must check another assumption--the variance of the quality scores between our white and red wine sample. We conduct Levene's Test to check that the variance of our two samples are equal.  The formal definition is provided below.
-<p align="center">
 The test statistic $W$ is given by:   
 <p align="center"> 
 $$W = \frac{(N - k)}{(k - 1)} \cdot \frac{\sum_{i=1}^{k} n_i (\bar{Z}_{i\cdot} - \bar{Z}_{\cdot\cdot})^2}{\sum_{i=1}^{k} \sum_{j=1}^{n_i} (Z_{ij} - \bar{Z}_{i\cdot})^2}$$
@@ -312,13 +311,12 @@ $\bar{Z}_{i\cdot}$ is the mean of the $Z_{ij}$ values in group $i$
 $$\bar{Z}_{\cdot\cdot}$$ is the overall mean of all $Z_{ij}$ values.
 </p>
 >Author's note
-The formulation essentially calculates a variability score to give us an F-Statistics that results in a p-value. The scipy library has a function to calculate the score for us.
-```python
-#Levene Test
-from scipy.stats import levene
+The formulation essentially calculates a variability score to give us an F-Statistics that results in a p-value. The scipy library has a function to calculate the score and corresponding p-value for us.
 
+```python
+ #Levene Test
+from scipy.stats import levene
 #Replace the red and white in the "Color" column with 0 and 1, respectively
-```
 combined_sample['Color'] = combined_sample['Color'].replace({'red':0,'white':1} )
 test_stat, pvalue = levene(combined_sample[combined_sample["Color"] == 0]["quality"],
                           combined_sample[combined_sample["Color"]==1]["quality"])
@@ -331,7 +329,7 @@ print(f'\n     * Levene Stat = {test_stat:.4f},p-value = {pvalue:.4f}')
 ```
 Our sample distrbution has failed both the normality test for their distribution and the homegenous variance test. At this point it is not advised to conduct a T-test for the difference of the sample means. We will proceed to the Non-Parametric Testing by performing the Mann-Whitney U-test. 
 
-####Concluding remarks regarding assumption verification
+#### Concluding remarks regarding assumption verification
 If our normality and homegeneity assumptions had been met, then we could have proceeded with a T-test for difference in means. If however, normality had been met but not homogeneity, a _Welch's Test_ could have been conducted. However, in our case both assumptions were not met. Our hypothesis testing will be done using non-parametric testing, namely, Mann-Whitney U-Test. 
    >Author's Note (Parametric vs Non-Parametric Testing)
 If we made an underlying assumption about the underlying distribution of our sample (Gaussian), we could proceed with parametric testing. However, since we are unable to safely assume any underlying distribution of our sample, we proceed with non-parametric testing.  
