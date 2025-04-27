@@ -1,4 +1,4 @@
-# A-B-Testing-Red-and-White-Wine
+# A/B Testing Red and White Wine
 ## Introduction 
 In this case study, red and white wine quality was analayzed from their respective data sets. The wine samples are from the north of Portugal.
 
@@ -442,3 +442,9 @@ print(f'\n  * Mann-Whitney U Stat = {test_stat:.4f}, p-value = {pvalue:.4f}')
 ```
 ## Hypothesis Testing Conclusion
 The result from Mann-Whitney U Stat is used to test our intial hypothesis. We reject our null hypothesis that mean quality score between red and white wine are equal. There is statistically significant evidence to suggest that they are not equal. 
+
+Our client set out to determine if there was a significant difference in quality between red and white wine. We can safely conclude that there is a difference. Additionally a one sided Mann-Whitney U Test reveals that white wine does  observe a statistically significant higher average quality score compared to red wine.  
+
+The client may choose to supply less red wine options to customers. Futher analysis is required to see which of the physiochemical properties of the wine are the leading factors for determining the quality score. 
+
+#
