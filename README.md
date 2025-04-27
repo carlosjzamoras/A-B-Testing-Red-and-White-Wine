@@ -447,10 +447,67 @@ Our client set out to determine if there was a significant difference in quality
 
 The client may choose to supply less red wine options to customers. Futher analysis is required to see which of the physiochemical properties of the wine are the leading factors for determining the quality score. 
 
-## Business Recommedations, SQL, and Dashboarding 
+## Business Recommedations, SQL, and Visualization
 While we were able to determine that there is a statistically signficant difference between the quality in red and white wine, we must also provide our client with actionable recommedations based on these findings. 
 
 The next step in our case study is to upload our data in a database and some simple querying in order to make some real word recommendations. 
 
 ### Creating A Database in PostgreSQL
+The next step is to upload our data into a PostgreSQL database. This will allow us to query the entirety of the database in order to find relationships between quality score and some of the physiochemical attributes of the wine. We will use python and some associated libraries to create and upload the database into PostgreSQL. 
+
+```python
+import pandas as pd
+import psycopg2
+from sqlalchemy import create_engine
+import sqlalchemy
+
+#Preliminary Confirgurations
+postgres_user = "postgres"
+#password hidden from demonstration
+postgres_password = "*********"
+postgres_host = "localhost"
+postgres_port = 5432  # Default
+new_db_name = "red_white_wine_new"
+csv_file_path = "your_data.csv"
+table_name = "my_table"
+# --------------------------------------
+
+#Connect to the default 'postgres' database to create a new one
+conn = psycopg2.connect(
+    dbname="postgres",
+    user=postgres_user,
+    password=postgres_password,
+    host=postgres_host,
+    port=postgres_port
+)
+conn.autocommit = True
+cur = conn.cursor()
+
+#Create a new database
+try:
+    cur.execute(f"CREATE DATABASE {new_db_name}")
+    print(f"Database '{new_db_name}' created successfully.")
+except psycopg2.errors.DuplicateDatabase:
+    print(f"Database '{new_db_name}' already exists.")
+finally:
+    cur.close()
+    conn.close()
+
+#Load the CSV into a DataFrame
+df = combined_wine
+
+#Connect to the new database with SQLAlchemy
+engine = create_engine(
+    f"postgresql+psycopg2://{postgres_user}:{postgres_password}@{postgres_host}:{postgres_port}/{new_db_name}"
+)
+
+#Upload the DataFrame to PostgreSQL
+df.to_sql(table_name, engine, index=False, if_exists='replace')  # 'append' if you want to keep existing data
+
+print(f"Data uploaded to table '{table_name}' in database '{new_db_name}'.")
+```
+>output shown below
+```
+Data uploaded to table 'my_table' in database 'red_white_wine_new'.
+```
 
