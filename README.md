@@ -246,7 +246,7 @@ W = \frac{\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2}{\sum_{i=1}^{n} (x_i - \ba
 \end{equation}$$
 
 where:
- x_{(i)} is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample)  
+ $$x_{(i)}$$ is the $i$-th order statistic (i.e., the $i$-th smallest value in the sample)  
    $\bar{x}$ is the sample mean: $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$,  
    $a_i$ are constants computed from the means, variances, and covariances of the order statistics of a sample of size $n$ from a standard normal distribution, $n$ is the sample size.  
 
@@ -393,11 +393,32 @@ Welch Test Stat = -6.3897, p-value = 0.0000
 In this scenario, we would still reject the null hypothesis if our sample distributions were normal but had unequal variances. 
 
 ### Non-Parametric Testing (Mann-Whitney U Test)
-Finally, we conduct our Mann-Whitney Test. It is important to note that the Mann-Whitney U Test does **not** directly test for difference in means. Rather, it test if two sample distributions are equal--if the central tendency's of two samples are equal or not, based on ordinal data. Recall the intitial observations made in the histograms above, they have a similiar distribution but are slightly different--the red wine has a slight hortizontal shift compared to the white wine. The Mann-Whitney U Test is sensitive to differences in central tendencies only when the distributions between two samples are similarly shaped and spread. The results from the Mann-Whitney U Test can be interpretted as evidence in a shift in _medians_, which for practical purposes suggest a difference in means--a direct result in the shift in distributions.  
-The formal definition provided by the Mann-Whitney U Test is shown below. 
-<p align="central">
-  mann
+Finally, we conduct our Mann-Whitney Test. It is important to note that the Mann-Whitney U Test does **not** directly test for difference in means. Rather, it test if two independent sample distributions are equal--if the central tendency's of two samples are equal or not, based on ordinal data. Recall the intitial observations made in the histograms above, they have a similiar distribution but are slightly different--the red wine has a slight hortizontal shift compared to the white wine. The Mann-Whitney U Test is sensitive to differences in central tendencies only when the distributions between two samples are similarly shaped and spread. The results from the Mann-Whitney U Test can be interpretted as evidence in a shift in _medians_, which for practical purposes suggest a difference in means--a direct result in the shift in distributions.  
+The formal definition of the Mann-Whitney U Test is shown below. 
+<p align="center">
+Let $n_1$ and $n_2$ be the sample sizes of group 1 and group 2, respectively.
 </p>
-
+The U statistic for the two groups is defined as:
+<p align="center">
+$$U_1 = n_1 n_2 + \frac{n_1(n_1 + 1)}{2} - R_1$$
+</p>
+<p align="center">
+$$U_2 = n_1 n_2 + \frac{n_2(n_2 + 1)}{2} - R_2$$
+</p>
+<p align="center">
+Where $R_1$ and $R_2$ are the sums of the ranks for sample 1 and sample 2, respectively.
+</p>
+The test statistic is:
+<p align="center">
+$$U = \min(U_1, U_2)$$
+</p>
+The U statistic is approximated by a normal distribution where:
+<p align="center">
+$$Z = \frac{U - \mu_U}{\sigma_U}$$
+</p>
+<p align="center">
+$$\mu_U = \frac{n_1 n_2}{2}, \quad \sigma_U = \sqrt{\frac{n_1 n_2 (n_1 + n_2 + 1)}{12}}$$
+</p>
+end
 
 
