@@ -419,6 +419,10 @@ $$Z = \frac{U - \mu_U}{\sigma_U}$$
 <p align="center">
 $$\mu_U = \frac{n_1 n_2}{2}, \quad \sigma_U = \sqrt{\frac{n_1 n_2 (n_1 + n_2 + 1)}{12}}$$
 </p>
+>Author's note
+The Mann-Whitney U Test provides an alternative to the Student's T test. An important feature of the test is that the data must be ordinal. The quality score are hierarchical from a scale of 1 to 10, however, many wines share the same quality score since the scores are strictly interger values in the specified range. In order to combat this, a _connected_ rank is calculated. This is done by averaging the rank position for all tied values and using that value in the sum of ranks. An adjusted standard error of U is also calulcated which accounts for rank ties, is it  shown below where $t_i$ is the number of positions sharing the rank $i$ and $k$ is the number of distinct tie groups. 
+<p align = "center">
+$$\sigma_U = \sqrt{ \frac{n_1 n_2}{12} \left[ (n_1 + n_2 + 1) - \frac{\sum_{i=1}^{k} (t_i^3 - t_i)}{(n_1 + n_2)(n_1 + n_2 - 1)} \right] }$$
+</p>
 end
-
 
