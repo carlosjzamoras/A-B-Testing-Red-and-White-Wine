@@ -447,7 +447,7 @@ Our client set out to determine if there was a significant difference in quality
 
 The client may choose to supply less red wine options to customers. Futher analysis is required to see which of the physiochemical properties of the wine are the leading factors for determining the quality score. 
 
-## Business Recommedations, SQL, and Visualization
+## Business Recommedations, SQL, and Visualization (in progress)
 While we were able to determine that there is a statistically signficant difference between the quality in red and white wine, we must also provide our client with actionable recommedations based on these findings. 
 
 The next step in our case study is to upload our data in a database and some simple querying in order to make some real word recommendations. 
